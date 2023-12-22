@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { IBaseUser, IUser } from './userInterfaces';
 import AdduserForm from '../AddUser';
 import UserGrid from '../UserGrid';
 import UserDataService from '../../Services/userService';
 import './styles.css' 
 
-
-
-const currentUser: IUser = { id: 0, name: "", role: "", description: "" };
-
-const UserDashboard: React.FC = props => {
+const UserDashboard: React.FC =() => {
 
   const [users, setUsers] = useState<Array<IUser>>([]);
 
@@ -25,9 +21,7 @@ const UserDashboard: React.FC = props => {
     CreateUser(newUser);
   }
 
-
   return (
-
     <div className='userDashboard'>
       <h1>User Dashboard</h1>
       <div className="user-flex-wrapper">        
@@ -36,7 +30,6 @@ const UserDashboard: React.FC = props => {
       </div>
     </div>
   );
-
 }
 
 export default UserDashboard;

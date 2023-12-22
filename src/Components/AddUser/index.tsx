@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import * as ReactDOM from 'react-dom';
+import React, { useState } from 'react';
 import { IBaseUser, IUser } from '../UserDashboard/userInterfaces';
 
 interface IProps {

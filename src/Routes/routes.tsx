@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import React, { Component } from "react";
+import React from "react";
 import UserDashBoard from "../Components/UserDashboard";
 import { BASE_PATH } from "../Constants/routeConstant";
 

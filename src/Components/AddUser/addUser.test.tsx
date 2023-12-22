@@ -1,13 +1,11 @@
-import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import AddUser from './index';
 
 
 describe('AddUser Component', () => {
-
     const mockAddUser = jest.fn();
 
-test('Add User Page Component should load', () => {
+it('Add User Page Component should load', () => {
    
   render(<AddUser onAddUser={mockAddUser} />);
     const titleElement = screen.getByText(/Add User/i);
@@ -15,7 +13,7 @@ test('Add User Page Component should load', () => {
   
 });
 
-test('Form should clear after submit', () => {
+it('Form should clear after submit', () => {
   render(<AddUser onAddUser={mockAddUser} />);
     const submitbutton = screen.getByRole("button");
     fireEvent.click(submitbutton);
@@ -27,11 +25,9 @@ test('Form should clear after submit', () => {
     expect(description).toHaveValue("");  
 });
 
-test('Form validation  after submit', () => {
+it('Form validation  after submit', () => {
   render(<AddUser onAddUser={mockAddUser} />);
-   // yet to do
-
+   // yet to impplement
 });
-
-       
+     
   });

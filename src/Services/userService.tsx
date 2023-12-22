@@ -11,7 +11,5 @@ class UserDataService
     create = (data:IBaseUser)=>{
         return http.post<IUser>(ApiEndpoint.CREATE_USER, data);
     }
-
 }
-
 export default new UserDataService;
