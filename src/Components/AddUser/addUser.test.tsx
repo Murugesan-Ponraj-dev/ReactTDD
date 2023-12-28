@@ -5,15 +5,13 @@ import AddUser from './index';
 describe('AddUser Component', () => {
     const mockAddUser = jest.fn();
 
-it('Add User Page Component should load', () => {
-   
+it('add user page component should load', () => {   
   render(<AddUser onAddUser={mockAddUser} />);
-    const titleElement = screen.getByText(/Add User/i);
-  expect(titleElement).toBeInTheDocument();
-  
+  const titleElement = screen.getByText(/Add User/i);
+  expect(titleElement).toBeInTheDocument();  
 });
 
-it('Form should clear after submit', () => {
+it('form should clear after submit', () => {
   render(<AddUser onAddUser={mockAddUser} />);
     const submitbutton = screen.getByRole("button");
     fireEvent.click(submitbutton);
@@ -25,9 +23,4 @@ it('Form should clear after submit', () => {
     expect(description).toHaveValue("");  
 });
 
-it('Form validation  after submit', () => {
-  render(<AddUser onAddUser={mockAddUser} />);
-   // yet to impplement
 });
-     
-  });

@@ -1,8 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { IUser } from './userInterfaces';
 import UserDataService from "../../Services/userService";
 import UserDashBoard from './index';
 import * as React from 'react';
+import { mockUsers } from './userMockData';
+import { IUser } from './userInterfaces';
 
 beforeAll(() => {
   jest.mock('../../Services/userService', () => ({ create: jest.fn() }));
@@ -12,8 +13,6 @@ beforeAll(() => {
   }));
 });
 
-const mockData: IUser = { id: 5, name: "David", role: "SSD", description: "Senior Software des" };
-const mockUsers: Array<IUser> = [mockData];
 
 beforeEach(() => {
   const setter = jest.fn();
@@ -28,30 +27,28 @@ describe('UserDashBoard', () => {
     expect(titleElement).toBeInTheDocument();
   });
 
-
-  it('Add User and verify the added user in gird view', () => {
-
+  it.each([mockUsers])('add user and verify the added user in gird view', (mockData: IUser) => {
+    //Mock userdata sevice fetch call
     UserDataService.create = jest.fn().mockImplementation(
       () => Promise.resolve({ data: mockData, status: 200 }));
     const setter = jest.fn();
-
+     
+    //mock usestate and set mock data
     jest.spyOn(React, 'useState').mockImplementation(() => [mockUsers, setter]);
     render(<UserDashBoard />);
     const name = screen.getByPlaceholderText(/name/i);
     const role = screen.getByPlaceholderText(/role/i);
     const description = screen.getByPlaceholderText(/description/i);
     const submitbutton = screen.getByRole("button");
-
-    fireEvent.change(name, { target: { value: "Test" } });
-    fireEvent.change(role, { target: { value: "Test" } });
-    fireEvent.change(description, { target: { value: "Test" } });
+    fireEvent.change(name, { target: { value: mockData.name } });
+    fireEvent.change(role, { target: { value: mockData.role } });
+    fireEvent.change(description, { target: { value: mockData.description } });
     fireEvent.click(submitbutton);
-    const userName = screen.getByText(/David/i);
-    expect(userName).toBeInTheDocument()
+    const userName = screen.getByDisplayValue(mockData.name);
+    expect(userName).toBeInTheDocument();
   });
 
-
-  it('Page should load view user grid component', () => {
+  it('page should load view user grid component', () => {
     render(<UserDashBoard />);
     const viewUserElement = screen.getByText(/View users/i);
     expect(viewUserElement).toBeInTheDocument();

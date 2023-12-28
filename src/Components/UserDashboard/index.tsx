@@ -10,10 +10,8 @@ const UserDashboard: React.FC =() => {
   const [users, setUsers] = useState<Array<IUser>>([]);
 
   const CreateUser = async (data: IBaseUser) => {
-    UserDataService.create(data).then((res) => {
-      if (res.status == 200) {
-        setUsers([...users, { ...res.data }]);
-      }
+    UserDataService.create(data).then((res) => {      
+        setUsers([...users, { ...res }]);      
     })
   }
 

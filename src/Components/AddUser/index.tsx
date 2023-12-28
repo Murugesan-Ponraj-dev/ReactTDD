@@ -16,7 +16,6 @@ const AddUserForm: React.FC<IProps> = props => {
         event.preventDefault();
         props.onAddUser(user);
         setUser(inituser);
-
     }
     return (<div className="user-table">
         <h1>Add User</h1>
